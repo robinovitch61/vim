@@ -80,12 +80,16 @@ if has('gui_running')
 	set background=dark
 	colorscheme solarized
 else
-	colorscheme zenburn
+	"colorscheme zenburn
 endif
 call togglebg#map("<F5>")
 
 " Nerdtree
 let NERDTreeIgnore=['\.pyc$', '\~$'] "ignore files in NERDTree
+autocmd vimenter * NERDTree
+map <C-n> :NERDTreeToggle<CR>
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Powerline
 set rtp+=/usr/share/powerline/bindings/vim/
